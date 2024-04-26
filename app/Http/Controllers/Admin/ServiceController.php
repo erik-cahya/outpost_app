@@ -29,7 +29,8 @@ class ServiceController extends Controller
         ]);
         ServiceModel::create([
             'id' => mt_rand(100000000000000, 999999999999999),
-            'name' => $request->name
+            'name' => $request->name,
+            'service_category' => $request->service_category
         ]);
 
         return redirect('/admin/service');
@@ -55,7 +56,8 @@ class ServiceController extends Controller
         }
 
         ServiceModel::where('id', $id)->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'service_category' => $request->service_category
         ]);
         return redirect('/admin/service');
     }

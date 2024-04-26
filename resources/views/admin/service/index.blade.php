@@ -7,9 +7,9 @@
     <div class="page-header">
         <div class="breadcrumb">
             <span class="me-1 text-gray"><i class="feather icon-home"></i></span>
-            <div class="breadcrumb-item"><a href="index.html"> Home </a></div>
-            <div class="breadcrumb-item"><a href="javascript:void(0)"> Tables </a></div>
-            <div class="breadcrumb-item"><a href="h-data-table.html"> Data Table </a></div>
+            <div class="breadcrumb-item"><a href="{{ route('dashboard') }}"> Home </a></div>
+            <div class="breadcrumb-item"><a href="javascript:void(0)"> Services </a></div>
+            <div class="breadcrumb-item"><a href="h-data-table.html"> Data Services </a></div>
         </div>
     </div>
 
@@ -22,6 +22,7 @@
                         <tr>
                             <th width="10%">Number</th>
                             <th>Name Service</th>
+                            <th>Service Category</th>
                             <th width="25%">Action</th>
                         </tr>
                     </thead>
@@ -30,6 +31,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{!! $service->name !!}</td>
+                            <td>{!! $service->service_category !!}</td>
                             <td>
                                 <a href="/admin/service/{{ $service->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
 

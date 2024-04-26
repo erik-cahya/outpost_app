@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('service', function (Blueprint $table) {
             $table->string('id')->primary(); // Menggunakan UUID sebagai primary key
             $table->string('name');
+            $table->string('service_category');
             $table->timestamps();
         });
     }

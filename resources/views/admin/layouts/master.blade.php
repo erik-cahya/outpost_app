@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Espire - Admin Dashboard Template</title>
+    <title>Outpost - Admin Panel</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('admin_assets') }}/assets/images/logo/favicon.ico">
@@ -28,7 +28,6 @@
 
             <!-- Side Nav START -->
             @include('admin.layouts.sidebar')
-            <!-- Side Nav END -->
 
             <!-- Content START -->
             <div class="content">

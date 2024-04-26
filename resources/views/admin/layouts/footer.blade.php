@@ -1,9 +1,8 @@
 <div class="footer">
     <div class="footer-content">
-        <p class="mb-0">Copyright © 2021 Theme_Nate. All rights reserved.</p>
+        <p class="mb-0">Copyright © 2024 Outpost. All rights reserved.</p>
         <span>
-            <a href="" class="text-gray me-3">Term &amp; Conditions</a>
-            <a href="" class="text-gray">Privacy &amp; Policy</a>
+            <a href="https://bluecreative.id/" target="_blank" class="text-gray me-3">Developed By Blue Creative</a>
         </span>
     </div>
 </div>

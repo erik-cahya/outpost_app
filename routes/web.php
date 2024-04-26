@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/payment');
+    // return view('welcome');
 });
+
+
+Route::get('/payment/{type}', [PaymentController::class, 'index']);
+Route::get('/payment', [PaymentController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -30,7 +37,6 @@ Route::middleware('auth')->group(function () {
 
     // ## Country Management routes
     Route::resource('/admin/country', CountryController::class);
-
     // ## Location Management routes
     Route::resource('/admin/location', LocationController::class);
     // ## Location Management routes
