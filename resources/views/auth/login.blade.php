@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Espire - Admin Dashboard Template</title>
+    <title>Login | Outpost App</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.ico">
@@ -37,13 +37,12 @@
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Username</label>
+                                        <label class="form-label">Email</label>
                                         <input class="form-control" name="email" value="{{ old('email') }}" />
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label d-flex justify-content-between">
                                             <span>Password</span>
-                                            <a href="" class="text-primary font">Forget Password?</a>
                                         </label>
                                         <div class="form-group input-affix flex-column">
                                             <label class="d-none">Password</label>
@@ -56,7 +55,7 @@
 
 
                                 <div class="text-center mt-4">
-                                    <p class="text-muted">Don't have an account yet? <a href="/auth/register-1">Sign Up</a></p>
+                                    <p class="text-muted">Don't have an account yet? <a href="{{ route('register') }}">Register</a></p>
                                 </div>
                             </div>
                         </div>

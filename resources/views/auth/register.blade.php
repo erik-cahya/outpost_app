@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Espire - Admin Dashboard Template</title>
+    <title>Register | Outpost App</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('admin_assets') }}/assets/images/logo/favicon.ico">
@@ -69,6 +69,9 @@
                                     </div>
                                     <button class="btn btn-primary d-block w-100" type="submit">Sign Up</button>
                                 </form>
+                                <div class="text-center mt-4">
+                                    <p class="text-muted">Have an account? <a href="{{ route('login') }}">Login Here</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
