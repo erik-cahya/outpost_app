@@ -143,7 +143,12 @@
                     <div class="row">
                         <div class="mb-3 col-md-12">
                             <label for="exampleInputPassword1" class="form-label">Country</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1">
+                            <select class="form-select" id="countrySelect">
+                                <option selected readonly disabled>Choose...</option>
+                                @foreach ($dataCountry as $country)
+                                    <option value="{{ $country->name }}">{{ $country->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -168,25 +173,6 @@
                             </select>
 
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div id="customLocationInput" class="mb-3 col-md-6" style="display: none;">
-                            <label for="validationServer03" class="form-label">Custom Location</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
-                            <div id="validationServer03Feedback" class="valid-feedback">
-                                Please Input Your Location
-                            </div>
-                        </div>
-
-                        <div id="customServiceInput" class="mb-3 col-md-6" style="display: none;">
-                            <label for="validationServer01" class="form-label">Custom Service</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer01" aria-describedby="validationServer01Feedback" required>
-                            <div id="validationServer01Feedback" class="valid-feedback">
-                                Please Input Your Service
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="row">

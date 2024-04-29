@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CountryModel;
 use App\Models\LocationModel;
 use App\Models\ServiceModel;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class PaymentController extends Controller
             $dataService = ServiceModel::get();
         }
         $dataLocation = LocationModel::get();
+        $dataCountry = CountryModel::get();
 
-        return view('payments.index', compact('dataService', 'dataLocation'));
+        return view('payments.index', compact('dataService', 'dataLocation', 'dataCountry'));
     }
 }
