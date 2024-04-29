@@ -72,7 +72,7 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="service_category" id="service_category2" value="Co-Working">
+                                <input class="form-check-input" type="radio" name="service_category" id="service_category2" value="Co-Working" {{ old('service_category') === 'Co-Working' ? 'checked' : '' }}>
                                 <label class="form-check-label ms-2" for="service_category2">
                                     Co-Working
                                 </label>
@@ -92,7 +92,7 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment2" value="No">
+                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment2" value="No" {{ old('flexible_payment') === 'No' ? 'checked' : '' }}>
                                 <label class="form-check-label ms-2" for="flexible_payment2">
                                     No
                                 </label>
@@ -101,19 +101,26 @@
                     </fieldset>
                 </div>
 
-                <div class="col-md-6" id="idr_price_field">
+                <div class="col-md-6 mb-3" id="idr_price_field">
                     <label for="idr_price" class="form-label">IDR Price</label>
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">Rp.</span>
                         <input type="text" class="form-control" id="idr_price" name="idr_price" placeholder="Masukkan jumlah uang" onkeyup="updateRupiah(event)">
+
                     </div>
+                    @error('idr_price')
+                        <div id="inputDigit-error" class="is-invalid" style="color: #f46363">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="col-md-6" id="usd_price_field">
+                <div class="col-md-6 mb-3" id="usd_price_field">
                     <label for="usd_price" class="form-label">USD Price</label>
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">USD</span>
                         <input type="number" class="form-control" id="usd_price" name="usd_price" placeholder="Example input placeholder">
                     </div>
+                    @error('usd_price')
+                        <div id="inputDigit-error" class="is-invalid" style="color: #f46363">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="col-md-8">
@@ -136,7 +143,7 @@
         var flexiblePaymentValue = document.querySelector('input[name="flexible_payment"]:checked').value;
 
         // Show or hide form fields based on the selected value
-        if (flexiblePaymentValue === 'Yes') {
+        if (flexiblePaymentValue === 'No') {
             idrPriceField.style.display = 'block';
             usdPriceField.style.display = 'block';
         } else {

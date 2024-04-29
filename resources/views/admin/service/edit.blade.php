@@ -88,13 +88,13 @@
                         <legend class="col-form-label col-sm-2 pt-0">Flexible Payment</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment1" value="Yes" {{ $dataService->flexible_payment === 'Yes' ? 'checked' : '' }}>
+                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment1" value="Yes" {{ old('flexible_payment') === 'Yes' || $dataService->flexible_payment === 'Yes' ? 'checked' : '' }}>
                                 <label class="form-check-label ms-2" for="flexible_payment1">
                                     Yes
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment2" value="No" {{ $dataService->flexible_payment === 'No' ? 'checked' : '' }}>
+                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment2" value="No" {{ old('flexible_payment') === 'No' || $dataService->flexible_payment === 'No' ? 'checked' : '' }}>
                                 <label class="form-check-label ms-2" for="flexible_payment2">
                                     No
                                 </label>
@@ -103,19 +103,27 @@
                     </fieldset>
                 </div>
 
-                <div class="col-md-6" id="idr_price_field">
+                <div class="col-md-6 mb-3" id="idr_price_field">
                     <label for="idr_price" class="form-label">IDR Price</label>
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">Rp.</span>
                         <input type="text" class="form-control" id="idr_price" name="idr_price" placeholder="Masukkan jumlah uang" value="{{ $dataService->idr_price }}" onkeyup="keyUpEditRupiah(event)">
                     </div>
+
+                    @error('idr_price')
+                        <div id="inputDigit-error" class="is-invalid" style="color: #f46363">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="col-md-6" id="usd_price_field">
+                <div class="col-md-6 mb-3" id="usd_price_field">
                     <label for="usd_price" class="form-label">USD Price</label>
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">USD</span>
                         <input type="number" class="form-control" id="usd_price" name="usd_price" placeholder="Example input placeholder" value="{{ $dataService->usd_price }}">
                     </div>
+
+                    @error('usd_price')
+                        <div id="inputDigit-error" class="is-invalid" style="color: #f46363">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
@@ -137,7 +145,7 @@
         // Get the selected value of flexible payment radio button
         var flexiblePaymentValue = document.querySelector('input[name="flexible_payment"]:checked').value;
         // Show or hide form fields based on the selected value
-        if (flexiblePaymentValue === 'Yes') {
+        if (flexiblePaymentValue === 'No') {
             idrPriceField.style.display = 'block';
             usdPriceField.style.display = 'block';
         } else {

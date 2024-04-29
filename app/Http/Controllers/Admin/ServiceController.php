@@ -21,9 +21,12 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-
-
-
+        if ($request->flexible_payment == 'No') {
+            $validated = $request->validate([
+                'idr_price' => 'required',
+                'usd_price' => 'required',
+            ]);
+        }
         $validated = $request->validate([
             'name' => 'required|unique:service',
         ], [
@@ -58,7 +61,13 @@ class ServiceController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+
+        if ($request->flexible_payment == 'No') {
+            $validated = $request->validate([
+                'idr_price' => 'required',
+                'usd_price' => 'required',
+            ]);
+        }
         $nameService = ServiceModel::where('id', $id)->first('name');
         if ($request->name !== $nameService->name) {
             $validated = $request->validate([
@@ -79,8 +88,8 @@ class ServiceController extends Controller
             'name' => $request->name,
             'service_category' => $request->service_category,
             'flexible_payment' => $request->flexible_payment,
-            'idr_price' => ($request->flexible_payment == 'No' ? null : $formatIdrPrice),
-            'usd_price' => ($request->flexible_payment == 'No' ? null : $request->usd_price),
+            'idr_price' => ($request->flexible_payment == 'Yes' ? null : $formatIdrPrice),
+            'usd_price' => ($request->flexible_payment == 'Yes' ? null : $request->usd_price),
         ]);
         return redirect('/admin/service');
     }
