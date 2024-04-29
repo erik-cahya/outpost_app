@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require __DIR__ . '/auth.php';
+
 
 Route::get('/', function () {
     return redirect('/payment');
@@ -42,5 +44,3 @@ Route::middleware('auth')->group(function () {
     // ## Location Management routes
     Route::resource('/admin/service', ServiceController::class);
 });
-
-require __DIR__ . '/auth.php';

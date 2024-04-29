@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Outpost - Admin Panel</title>
 
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('admin_assets') }}/assets/images/logo/favicon.ico">
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/css/inputmask.min.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <style>
         input, textarea, select, button{
@@ -60,7 +61,11 @@
                     <div class="row">
                         <div class="mb-3 col-md-6" >
                             <label for="exampleInputEmail1" class="form-label">Currency</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                            <select class="form-select" id="serviceSelect">
+                                <option value="USD" selected>USD</option>
+                                <option value="IDR">IDR</option>
+                            </select>
                         </div>
 
                         <div class="mb-3 col-md-6">
@@ -76,7 +81,7 @@
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-wallet"></i>
                                 </div>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Card Number" aria-describedby="emailHelp">
                             </div>
                         </div>
                     </div>
@@ -84,11 +89,11 @@
                     <div class="row">
                         <div class="mb-3 col-md-6" >
                             <label for="exampleInputEmail1" class="form-label">Expiration Date</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="MM/YY" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="exampleInputPassword1" class="form-label">CV Code</label>
-                            <input type="number" class="form-control" id="exampleInputPassword1">
+                            <input type="number" class="form-control" placeholder="CVC" id="exampleInputPassword1">
                         </div>
                     </div>
 
@@ -153,7 +158,6 @@
                                     @foreach ($dataLocation as $location)
                                         <option value="{{ $location->name }}">{{ $location->name }}</option>
                                     @endforeach
-                                    <option value="custom">Custom</option>
                                 </select>
                         </div>
 
@@ -164,7 +168,6 @@
                                 @foreach ($dataService as $service)
                                     <option value="{{ $service->name }}">{{ $service->name }}</option>
                                 @endforeach
-                                <option value="custom">Custom</option>
                             </select>
 
                         </div>
@@ -220,30 +223,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        document.getElementById('locationSelect').addEventListener('change', function() {
-            var selectElement = document.getElementById('locationSelect');
-            var customLocationInput = document.getElementById('customLocationInput');
-
-            if (selectElement.value === 'custom') {
-                customLocationInput.style.display = 'block'; // Tampilkan input custom
-            } else {
-                customLocationInput.style.display = 'none'; // Sembunyikan input custom
-            }
-        });
-
-        document.getElementById('serviceSelect').addEventListener('change', function() {
-            var selectElement = document.getElementById('serviceSelect');
-            var customLocationInput = document.getElementById('customServiceInput');
-
-            if (selectElement.value === 'custom') {
-                customLocationInput.style.display = 'block'; // Tampilkan input custom
-            } else {
-                customLocationInput.style.display = 'none'; // Sembunyikan input custom
-            }
-            console.log(customLocationInput);
-        });
-    </script>
 
 </body>
 </html>

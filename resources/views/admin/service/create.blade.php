@@ -53,6 +53,26 @@
                     </fieldset>
                 </div>
 
+                <div class="col-md-10">
+                    <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-2 pt-0">Flexible Payment</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment1" value="Yes" checked>
+                                <label class="form-check-label ms-2" for="flexible_payment1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexible_payment" id="flexible_payment2" value="No">
+                                <label class="form-check-label ms-2" for="flexible_payment2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
                 <div class="col-md-8">
                     <button type="submit" class="btn btn-primary">Add Country</button>
                 </div>
