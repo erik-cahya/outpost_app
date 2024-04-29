@@ -1,52 +1,90 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Espire - Admin Dashboard Template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('admin_assets') }}/assets/images/logo/favicon.ico">
+
+    <!-- page css -->
+
+    <!-- Core css -->
+    <link href="{{ asset('admin_assets') }}/assets/css/app.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="auth-full-height d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="m-2">
+                                <div class="d-flex justify-content-center mt-3">
+                                    <div class="text-center logo">
+                                        <img alt="logo" class="img-fluid" src="{{ asset('admin_assets') }}/assets/images/logo/logo-fold.png"
+                                            style="height: 70px;">
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <h3 class="fw-bolder">Sign Up</h3>
+                                    <p class="text-muted">Sign up account to get free reward!</p>
+                                </div>
+
+
+                                <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control no-validation-icon no-success-validation" name="name" value="{{ old('name') }}">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control no-validation-icon no-success-validation" name="email" value="{{ old('email') }}">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="password"
+                                        id="password"
+                                            class="form-control no-validation-icon no-success-validation"
+                                            name="password">
+
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Confirm Password</label>
+                                        <input type="password"
+                                        id="password_confirmation"
+                                            class="form-control no-validation-icon no-success-validation"
+                                            name="password_confirmation">
+
+                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+
+                                    </div>
+                                    <button class="btn btn-primary d-block w-100" type="submit">Sign Up</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+    <!-- Core Vendors JS -->
+    <script src="{{ asset('admin_assets') }}/assets/js/vendors.min.js"></script>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <!-- page js -->
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+    <!-- Core JS -->
+    <script src="{{ asset('admin_assets') }}/assets/js/app.min.js"></script>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+</body>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>

@@ -1,47 +1,79 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Espire - Admin Dashboard Template</title>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.ico">
+
+    <!-- page css -->
+
+    <!-- Core css -->
+    <link href="{{ asset('admin_assets') }}/assets/css/app.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="auth-full-height d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="m-2">
+                                <div class="d-flex justify-content-center mt-3">
+                                    <div class="text-center logo">
+                                        <img alt="logo" class="img-fluid" src="{{ asset('admin_assets') }}/assets/images/logo/logo-fold.png" style="height: 70px;">
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <h3 class="fw-bolder">Sign In</h3>
+                                    <p class="text-muted">Sign in your account to continue</p>
+                                </div>
+
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Username</label>
+                                        <input class="form-control" name="email" value="{{ old('email') }}" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label d-flex justify-content-between">
+                                            <span>Password</span>
+                                            <a href="" class="text-primary font">Forget Password?</a>
+                                        </label>
+                                        <div class="form-group input-affix flex-column">
+                                            <label class="d-none">Password</label>
+                                            <input formcontrolname="password" class="form-control" type="password" name="password">
+                                            <i class="suffix-icon feather cursor-pointer text-dark icon-eye" ng-reflect-ng-class="icon-eye"></i>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Log In</button>
+                                </form>
+
+
+                                <div class="text-center mt-4">
+                                    <p class="text-muted">Don't have an account yet? <a href="/auth/register-1">Sign Up</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <!-- Core Vendors JS -->
+    <script src="assets/js/vendors.min.js"></script>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+    <!-- page js -->
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <!-- Core JS -->
+    <script src="assets/js/app.min.js"></script>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+</body>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>
