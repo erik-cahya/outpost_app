@@ -21,7 +21,7 @@
                     <div class="toggle-wrapper" id="nav-profile-dropdown" data-bs-toggle="dropdown">
                         <div class="avatar avatar-circle avatar-image"
                             style="width: 35px; height: 35px; line-height: 35px;">
-                            <img src="{{ asset('admin_assets') }}/assets/images/avatars/thumb-1.jpg" alt="">
+                            <img src="{{ asset('admin_assets') }}/assets/images/avatars/thumb-10.jpg" alt="">
                         </div>
                         <span class="fw-bold mx-1">{{ Auth::user()->name }}</span>
                         <i class="feather icon-chevron-down"></i>
@@ -30,7 +30,7 @@
                         <div class="nav-profile-header">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-circle avatar-image">
-                                    <img src="{{ asset('admin_assets') }}/assets/images/avatars/thumb-1.jpg" alt="">
+                                    <img src="{{ asset('admin_assets') }}/assets/images/avatars/thumb-10.jpg" alt="">
                                 </div>
                                 <div class="d-flex flex-column ms-1">
                                     <span class="fw-bold text-dark">{{ Auth::user()->name }}</span>
@@ -42,18 +42,6 @@
                             <div class="d-flex align-items-center">
                                 <i class="font-size-lg me-2 feather icon-user"></i>
                                 <span>Profile</span>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" class="dropdown-item">
-                            <div class="d-flex align-items-center">
-                                <i class="font-size-lg me-2 feather icon-settings"></i>
-                                <span>Settings</span>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" class="dropdown-item">
-                            <div class="d-flex align-items-center"><i
-                                    class="font-size-lg me-2 feather icon-life-buoy"></i>
-                                <span>Support</span>
                             </div>
                         </a>
 

@@ -18,20 +18,26 @@
             <h4>List Data Service</h4>
             <div class="mt-4">
                 <table id="data-table" class="table data-table">
-                    <thead>
+                    <thead class="text-center">
                         <tr>
                             <th width="10%">Number</th>
                             <th>Name Service</th>
                             <th>Service Category</th>
-                            <th width="25%">Action</th>
+                            <th>Flexible Payment</th>
+                            <th>IDR Price</th>
+                            <th>USD Price</th>
+                            <th width="18%">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         @foreach ($dataService as $service)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{!! $service->name !!}</td>
-                            <td>{!! $service->service_category !!}</td>
+                            <td>{{ $service->service_category }}</td>
+                            <td>{{ $service->flexible_payment }}</td>
+                            <td> {{ $service->idr_price == null ? '-' : 'Rp. ' . number_format($service->idr_price, 0, ',', '.') }}</td>
+                            <td>{{ $service->usd_price == null ? '-' : 'USD $'. $service->usd_price }}</td>
                             <td>
                                 <a href="/admin/service/{{ $service->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
 

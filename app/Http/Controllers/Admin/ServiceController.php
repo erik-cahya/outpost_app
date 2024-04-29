@@ -21,16 +21,29 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
+
+
+
         $validated = $request->validate([
             'name' => 'required|unique:service',
         ], [
             'name.required' => 'Kolom ini harus diisi.',
             'name.unique' => 'Service data already exists.',
         ]);
+
+        if ($request->idr_price == null) {
+            $formatIdrPrice = $request->idr_price;
+        } else {
+            $formatIdrPrice = str_replace(['.'], '', $request->idr_price);
+        }
+
         ServiceModel::create([
             'id' => mt_rand(100000000000000, 999999999999999),
             'name' => $request->name,
-            'service_category' => $request->service_category
+            'service_category' => $request->service_category,
+            'flexible_payment' => $request->flexible_payment,
+            'idr_price' => $formatIdrPrice,
+            'usd_price' => $request->usd_price,
         ]);
 
         return redirect('/admin/service');
@@ -45,6 +58,7 @@ class ServiceController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $nameService = ServiceModel::where('id', $id)->first('name');
         if ($request->name !== $nameService->name) {
             $validated = $request->validate([
@@ -55,9 +69,18 @@ class ServiceController extends Controller
             ]);
         }
 
+        if ($request->idr_price == null) {
+            $formatIdrPrice = $request->idr_price;
+        } else {
+            $formatIdrPrice = str_replace(['.'], '', $request->idr_price);
+        }
+
         ServiceModel::where('id', $id)->update([
             'name' => $request->name,
-            'service_category' => $request->service_category
+            'service_category' => $request->service_category,
+            'flexible_payment' => $request->flexible_payment,
+            'idr_price' => ($request->flexible_payment == 'No' ? null : $formatIdrPrice),
+            'usd_price' => ($request->flexible_payment == 'No' ? null : $request->usd_price),
         ]);
         return redirect('/admin/service');
     }

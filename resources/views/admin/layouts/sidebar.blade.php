@@ -1,8 +1,13 @@
 <div class="side-nav vertical-menu nav-menu-light scrollable">
     <div class="nav-logo">
-        <div class="w-100 logo">
+
+        {{-- <div class="w-100 logo">
             <img class="img-fluid" src="{{ asset('admin_assets') }}/assets/images/logo/logo.png" style="max-height: 70px;" alt="logo">
-        </div>
+        </div> --}}
+
+        <h4>Outpost Admin Panel</h4>
+
+
         <div class="mobile-close">
             <i class="icon-arrow-left feather"></i>
         </div>

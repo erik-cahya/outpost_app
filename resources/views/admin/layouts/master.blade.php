@@ -20,6 +20,10 @@
 
     @yield('css_customize')
 
+    @yield('js_head_customize')
+
+
+
 </head>
 
 <body>
