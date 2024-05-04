@@ -57,17 +57,16 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="row">
                         <div class="mb-3 col-md-6" >
-                            <label for="exampleInputEmail1" class="form-label">Currency</label>
-
-                            <select class="form-select" id="serviceSelect">
+                            <label for="currency" class="form-label">Currency</label>
+                            <select class="form-select" id="currency_select">
                                 <option value="USD" selected>USD</option>
                                 <option value="IDR">IDR</option>
                             </select>
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label">Amount</label>
-                            <input type="number" class="form-control" id="exampleInputPassword1">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="amount">
                         </div>
                     </div>
 
@@ -165,7 +164,7 @@
 
                         <div class="mb-3 col-md-6">
                             <label for="exampleInputEmail1" class="form-label">Service</label>
-                            <select class="form-select" id="serviceSelect">
+                            <select class="form-select" id="data_service">
                                 <option selected disabled readonly>Choose...</option>
                                 @foreach ($dataService as $service)
                                     <option value="{{ $service->name }}">{{ $service->name }}</option>
@@ -207,5 +206,65 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+    {{-- Get Data Price Using JQuery --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="{{ asset('admin_assets/assets/js/jquery3.5.1.min.js') }}"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            loadDataCurrency();
+
+            function loadDataCurrency() {
+                var currency_type = $("#currency_select").val();
+                var services_name = $("#data_service").val();
+
+                $.ajax({
+                    url: '../getDataPrice/' + services_name,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+
+                        if (currency_type == 'USD') {
+                            $("#amount").val(response['data'][0].usd_price);
+                        } else {
+                            $("#amount").val(response['data'][0].idr_price);
+                        }
+                        if (response['data'][0].idr_price !== null) {
+                            $("#amount").prop('readonly', true);
+                        } else {
+                            $("#amount").prop('readonly', false);
+                        }
+                    }
+                });
+
+                $('#data_service').change(function() {
+                    services_name = $(this).val();
+                    console.log(services_name);
+                    $.ajax({
+                        url: '../getDataPrice/' + services_name,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(response) {
+                            if (currency_type == 'USD') {
+                                $("#amount").val(response['data'][0].usd_price);
+                            } else {
+                                $("#amount").val(response['data'][0].idr_price);
+                            }
+                            if (response['data'][0].idr_price !== null) {
+                                $("#amount").prop('readonly', true);
+                            } else {
+                                $("#amount").prop('readonly', false);
+                            }
+                        }
+                    });
+                });
+            };
+
+            // Bind event change untuk #currency_select
+            $('#currency_select').change(function(){
+                loadDataCurrency();
+            });
+        });
+    </script>
 </body>
 </html>

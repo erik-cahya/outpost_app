@@ -44,3 +44,5 @@ Route::middleware('auth')->group(function () {
     // ## Location Management routes
     Route::resource('/admin/service', ServiceController::class);
 });
+
+Route::get('getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');

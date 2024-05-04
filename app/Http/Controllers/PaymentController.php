@@ -6,6 +6,7 @@ use App\Models\CountryModel;
 use App\Models\LocationModel;
 use App\Models\ServiceModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -25,5 +26,15 @@ class PaymentController extends Controller
         $dataCountry = CountryModel::get();
 
         return view('payments.index', compact('dataService', 'dataLocation', 'dataCountry'));
+    }
+
+    public function getDataPrice($id)
+    {
+        $empData['data'] = DB::table('service')
+            ->select('idr_price', 'usd_price')
+            ->where('name', $id)
+            ->get();
+
+        return response()->json($empData);
     }
 }
