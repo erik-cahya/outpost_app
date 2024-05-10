@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('service_category');
             $table->enum('flexible_payment', ['Yes', 'No'])->default('No');
             $table->integer('idr_price')->nullable();
-            $table->integer('usd_price')->nullable();
+            $table->float('usd_price')->nullable();
             $table->timestamps();
         });
     }

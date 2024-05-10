@@ -116,7 +116,12 @@
                     <label for="usd_price" class="form-label">USD Price</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">USD</span>
-                        <input type="number" class="form-control" id="usd_price" name="usd_price" placeholder="Example input placeholder">
+
+                        {{-- <input type="number" class="form-control" id="usd_price" name="usd_price" placeholder="Example input placeholder"> --}}
+
+                        <input type="text" class="form-control" name="usd_price" id="usd_price" onkeypress="return hanyaAngka(event)">
+
+
                     </div>
                     @error('usd_price')
                         <div id="inputDigit-error" class="is-invalid" style="color: #f46363">{{ $message }}</div>
@@ -163,6 +168,24 @@
             toggleFormFields();
         });
     });
+</script>
+<script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var value = document.getElementById("usd_price").value;
+
+        // Hanya izinkan digit angka, titik (sebagai koma), dan tombol panah navigasi
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        // Pastikan hanya ada satu titik dalam input
+        if (charCode == 46 && value.indexOf('.') !== -1) {
+            return false;
+        }
+
+        return true;
+    }
 </script>
 @endsection
 
