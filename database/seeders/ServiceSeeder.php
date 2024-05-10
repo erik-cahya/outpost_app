@@ -63,6 +63,107 @@ class ServiceSeeder extends Seeder
                 'idr_price' => 230000,
                 'usd_price' => 14.36,
             ],
+
+            // Co Living Penestanan
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Banjar',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Rooftop',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Skype Room',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+
+            // Co Living Ubud
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => '2nd Floor Main Room + Brahmacari + Balcony',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => '2nd Floor Main Room + Balcony',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Brahmacari',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Campuhan',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Laba',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Mandala',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Jaya',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Shri',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
+            [
+                'id' => mt_rand(100000000000000, 999999999999999),
+                'name' => 'Skype Room',
+                'service_category' => 'Co-Living',
+                'flexible_payment' => 'Yes',
+                'idr_price' => null,
+                'usd_price' => null,
+            ],
         ];
 
         foreach ($services as $row) {
