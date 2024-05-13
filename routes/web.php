@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +47,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');
+
+// Stripe Test
+Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::post('/session', [StripeController::class, 'session'])->name('session');
+Route::get('/success', [StripeController::class, 'success'])->name('success');
+
+// Route::get('/checkout', 'App\Http\Controllers\StripeController@checkout')->name('checkout');
+// Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
+// Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');
