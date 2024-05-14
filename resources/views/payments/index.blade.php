@@ -51,26 +51,142 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <form>
+    <div class="container p-4 mt-4">
+        <form action="{{ route('post.payment') }}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="row">
-                        <div class="mb-3 col-md-6" >
-                            <label for="currency" class="form-label">Currency</label>
-                            <select class="form-select" id="currency_select">
-                                <option value="USD" selected>USD</option>
-                                <option value="IDR">IDR</option>
-                            </select>
-                        </div>
-
                         <div class="mb-3 col-md-6">
-                            <label for="amount" class="form-label">Amount</label>
-                            <input type="number" class="form-control" id="amount">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name">
                         </div>
                     </div>
 
                     <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="phone" class="form-label">Mobile</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <input type="text" class="form-control" id="phone" name="phone_number">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                            <label for="country" class="form-label">Country</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-globe-asia"></i>
+                                </div>
+                                <select class="form-select" id="country" name="country">
+                                    <option selected readonly disabled>Choose...</option>
+                                    @foreach ($dataCountry as $country)
+                                        <option value="{{ $country->name }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="exampleInputEmail1" class="form-label">Location</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-flag"></i>
+                                </div>
+                                <select class="form-select" id="locationSelect" name="location">
+                                    <option selected readonly disabled>Choose...</option>
+                                    @foreach ($dataLocation as $location)
+                                        <option value="{{ $location->name }}">{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="exampleInputEmail1" class="form-label">Service</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-grip-horizontal"></i>
+                                </div>
+                                <select class="form-select" id="data_service" name="services">
+                                    <option selected disabled readonly>Choose...</option>
+                                    @foreach ($dataService as $service)
+                                        <option value="{{ $service->name }}">{{ $service->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                            <label for="floatingTextarea2">Comments</label>
+                            <textarea class="form-control mt-2" placeholder="Leave a comment here" name="comment" id="floatingTextarea2" style="height: 100px"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- Section form 2 --}}
+                <div class="col-md-6 col-sm-12">
+
+                    <div class="row">
+                        <div class="mb-3 col-md-6" >
+                            <label for="currency" class="form-label">Currency</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa-brands fa-gg-circle"></i>
+                                </div>
+                                <select class="form-select" id="currency_select" name="currency">
+                                    <option value="USD" selected>USD</option>
+                                    <option value="IDR">IDR</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="amount" class="form-label">Amount</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <input type="text" class="form-control" id="amount" name="amount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="row">
                         <div class="mb-3 col-md-12" >
                             <label for="exampleInputEmail1" class="form-label">Card Number</label>
                             <div class="input-group">
@@ -91,7 +207,7 @@
                             <label for="exampleInputPassword1" class="form-label">CV Code</label>
                             <input type="number" class="form-control" placeholder="CVC" id="exampleInputPassword1">
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group text-center" style="font-size: 40px">
                         <ul class="list-inline">
@@ -113,90 +229,24 @@
                     <div class="alert alert-warning" role="alert">
                         NOTE: For currencies other than USD, a 2.5% fee will be added for exchange rate fees.
                     </div>
-                </div>
-
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputEmail1" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label">Mobile</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-md-12">
-                            <label for="exampleInputPassword1" class="form-label">Country</label>
-                            <select class="form-select" id="countrySelect">
-                                <option selected readonly disabled>Choose...</option>
-                                @foreach ($dataCountry as $country)
-                                    <option value="{{ $country->name }}">{{ $country->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputEmail1" class="form-label">Location</label>
-                                <select class="form-select" id="locationSelect">
-                                    <option selected readonly disabled>Choose...</option>
-                                    @foreach ($dataLocation as $location)
-                                        <option value="{{ $location->name }}">{{ $location->name }}</option>
-                                    @endforeach
-                                </select>
-                        </div>
-
-                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputEmail1" class="form-label">Service</label>
-                            <select class="form-select" id="data_service">
-                                <option selected disabled readonly>Choose...</option>
-                                @foreach ($dataService as $service)
-                                    <option value="{{ $service->name }}">{{ $service->name }}</option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-md-12">
-                            <label for="floatingTextarea2">Comments</label>
-                            <textarea class="form-control mt-2" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                        </div>
-                    </div>
 
                     <div class="form-check m-2">
-                        <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" required>
                         <label class="form-check-label" for="autoSizingCheck">
                             I accept the Terms and conditions
                         </label>
                     </div>
 
-
                     <div class="row">
-                            <button id="payment-button" type="submit" class="btn btn-lg btn-success btn-block">
-                                <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                <span id="payment-button-amount" class="text-uppercase">Pay with Stripe</span>
-                            </button>
-                        </div>
-                        </div>
+                        <button id="payment-button" type="submit" class="btn btn-lg btn-success btn-block">
+                            <i class="fa fa-lock fa-lg"></i>&nbsp;
+                            <span id="payment-button-amount" class="text-uppercase">Pay with Stripe</span>
+                        </button>
+                    </div>
                 </div>
+
+
+
             </div>
         </form>
     </div>
@@ -259,7 +309,6 @@
                     });
                 });
             };
-
             // Bind event change untuk #currency_select
             $('#currency_select').change(function(){
                 loadDataCurrency();

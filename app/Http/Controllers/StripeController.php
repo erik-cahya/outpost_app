@@ -18,17 +18,30 @@ class StripeController extends Controller
         $productname = $request->get('productname');
         $totalprice = $request->get('total');
         $two0 = "00";
-        $total = "$totalprice$two0";
+        $total = 1000000;
+
+        // dd($total);
 
         $session = \Stripe\Checkout\Session::create([
             'line_items'  => [
                 [
                     'price_data' => [
-                        'currency'     => 'USD',
+                        'currency'     => 'IDR',
                         'product_data' => [
                             "name" => $productname,
                         ],
-                        'unit_amount'  => $total,
+                        'unit_amount'  => $total . "00",
+                    ],
+                    'quantity'   => 1,
+                ],
+
+                [
+                    'price_data' => [
+                        'currency'     => 'IDR',
+                        'product_data' => [
+                            "name" => 'Data 2',
+                        ],
+                        'unit_amount'  => $total . "00",
                     ],
                     'quantity'   => 1,
                 ],
@@ -39,6 +52,7 @@ class StripeController extends Controller
             'cancel_url'  => route('checkout'),
         ]);
 
+        // dd($session->url);
         return redirect()->away($session->url);
     }
 

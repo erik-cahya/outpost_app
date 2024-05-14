@@ -28,6 +28,42 @@ class PaymentController extends Controller
         return view('payments.index', compact('dataService', 'dataLocation', 'dataCountry'));
     }
 
+    public function payment(Request $request)
+    {
+
+        if ($request->currency == 'USD') {
+            $explode = explode('.', $request->amount);
+            if (!isset($explode[1])) {
+                array_push($explode, '00');
+            }
+            $total = implode('', $explode);
+        } else {
+            $total = $request->amount . "00";
+        }
+        \Stripe\Stripe::setApiKey(config('stripe.sk'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'line_items'  => [
+                [
+                    'price_data' => [
+                        'currency'     => $request->currency,
+                        'product_data' => [
+                            "name" => $request->services,
+                        ],
+                        'unit_amount'  => $total,
+                    ],
+                    'quantity'   => 1,
+                ],
+            ],
+            'mode'        => 'payment',
+            'success_url' => route('success'),
+            'cancel_url'  => route('get.payment'),
+        ]);
+
+        // dd($session->url);
+        return redirect()->away($session->url);
+    }
+
     public function getDataPrice($id)
     {
         $empData['data'] = DB::table('service')
