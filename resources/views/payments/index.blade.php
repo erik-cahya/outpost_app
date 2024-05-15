@@ -75,7 +75,7 @@
                                 <div class="input-group-text">
                                     <i class="far fa-envelope"></i>
                                 </div>
-                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
                             </div>
                         </div>
                         <div class="mb-3 col-md-6">
@@ -118,15 +118,13 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-flag"></i>
                                 </div>
-                                <select class="form-select" id="locationSelect" name="location">
+                                <select class="form-select" id="outpost_location" name="location">
                                     <option selected readonly disabled>Choose...</option>
                                     @foreach ($dataLocation as $location)
-                                        <option value="{{ $location->name }}">{{ $location->name }}</option>
+                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-
-
                         </div>
 
                         <div class="mb-3 col-md-6">
@@ -136,11 +134,12 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-grip-horizontal"></i>
                                 </div>
+
                                 <select class="form-select" id="data_service" name="services">
-                                    <option selected disabled readonly>Choose...</option>
-                                    @foreach ($dataService as $service)
+                                    <option selected disabled readonly>Choose Location Before...</option>
+                                    {{-- @foreach ($dataService as $service)
                                         <option value="{{ $service->name }}">{{ $service->name }}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
 
@@ -186,29 +185,6 @@
                         </div>
                     </div>
 
-                    {{-- <div class="row">
-                        <div class="mb-3 col-md-12" >
-                            <label for="exampleInputEmail1" class="form-label">Card Number</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="fa-solid fa-wallet"></i>
-                                </div>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Card Number" aria-describedby="emailHelp">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-md-6" >
-                            <label for="exampleInputEmail1" class="form-label">Expiration Date</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="MM/YY" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label">CV Code</label>
-                            <input type="number" class="form-control" placeholder="CVC" id="exampleInputPassword1">
-                        </div>
-                    </div> --}}
-
                     <div class="form-group text-center" style="font-size: 40px">
                         <ul class="list-inline">
                             <li class="list-inline-item">
@@ -244,11 +220,11 @@
                         </button>
                     </div>
                 </div>
-
-
-
             </div>
         </form>
+
+
+
     </div>
 
 
@@ -265,11 +241,12 @@
             loadDataCurrency();
 
             function loadDataCurrency() {
+                console.log('LoadDataCurrencies');
                 var currency_type = $("#currency_select").val();
                 var services_name = $("#data_service").val();
 
                 $.ajax({
-                    url: '../getDataPrice/' + services_name,
+                    url: 'payment/getDataPrice/' + services_name,
                     type: 'get',
                     dataType: 'json',
                     success: function(response) {
@@ -287,11 +264,10 @@
                     }
                 });
 
-                $('#data_service').change(function() {
+                $('#data_service').click(function() {
                     services_name = $(this).val();
-                    console.log(services_name);
                     $.ajax({
-                        url: '../getDataPrice/' + services_name,
+                        url: 'payment/getDataPrice/' + services_name,
                         type: 'get',
                         dataType: 'json',
                         success: function(response) {
@@ -300,6 +276,8 @@
                             } else {
                                 $("#amount").val(response['data'][0].idr_price);
                             }
+
+                            console.log(response['data']);
                             if (response['data'][0].idr_price !== null) {
                                 $("#amount").prop('readonly', true);
                             } else {
@@ -312,6 +290,42 @@
             // Bind event change untuk #currency_select
             $('#currency_select').change(function(){
                 loadDataCurrency();
+            });
+        });
+    </script>
+
+
+    <script type='text/javascript'>
+        $('#outpost_location').change(function() {
+            var outpost_location = $("#outpost_location").val();
+            $.ajax({
+                url: '/payment/getDataLocation/' + outpost_location,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    // Kosongkan elemen select sebelum menambahkan opsi baru
+                    const selectElement = document.getElementById('data_service');
+                    const amountForm = document.getElementById('amount');
+
+                    selectElement.innerHTML = ''; // Mengosongkan semua opsi yang ada
+                    amountForm.value = ''; // Mengosongkan semua opsi yang ada
+
+                   // Iterasi melalui data dan tambahkan opsi baru
+                    response['data'].forEach(item => {
+                        // Buat opsi baru untuk item saat ini
+                        const option = document.createElement('option');
+                        option.value = item.name;
+                        option.textContent = item.name;
+
+                        // Tambahkan opsi baru untuk item saat ini ke dalam elemen select
+                        selectElement.appendChild(option);
+                    });
+
+                    // Jika Anda ingin mengatur nilai default untuk elemen select
+                    if (response['data'].length > 0) {
+                        selectElement.value = response['data'][0].name;
+                    }
+                }
             });
         });
     </script>

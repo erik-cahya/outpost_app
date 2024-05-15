@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('location', function (Blueprint $table) {
+        Schema::create('outpost_location', function (Blueprint $table) {
             $table->string('id')->primary(); // Menggunakan UUID sebagai primary key
             $table->string('name');
             $table->timestamps();

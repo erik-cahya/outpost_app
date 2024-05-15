@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id')->primary(); // Menggunakan UUID sebagai primary key
             $table->string('name');
             $table->string('service_category');
+            $table->string('outpost_location_id');
             $table->enum('flexible_payment', ['Yes', 'No'])->default('No');
             $table->integer('idr_price')->nullable();
             $table->float('usd_price')->nullable();

@@ -49,9 +49,9 @@
 
                 <div class="col-md-10">
                     <div class="row mb-3">
-                        <label for="country_name" class="col-sm-2 col-form-label">Country Name</label>
+                        <label for="service_name" class="col-sm-2 col-form-label">Service Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="country_name" name="name" value="{{ old('name') }}" placeholder="Input Name of Service">
+                            <input type="text" class="form-control" id="service_name" name="name" value="{{ old('name') }}" placeholder="Input Name of Service">
 
                             @error('name')
                                 <div id="inputDigit-error" class="is-invalid" style="color: #f46363">{{ $message }}</div>
@@ -64,7 +64,7 @@
                 <div class="col-md-10">
                     <fieldset class="row mb-3">
                         <legend class="col-form-label col-sm-2 pt-0">Service Category</legend>
-                        <div class="col-sm-10">
+                        <div class="col-md-10">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="service_category" id="service_category1" value="Co-Living" checked>
                                 <label class="form-check-label ms-2" for="service_category1">
@@ -77,6 +77,23 @@
                                     Co-Working
                                 </label>
                             </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                {{-- Outpost Location --}}
+                <div class="col-md-10">
+                    <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-2 pt-0">Outpost Location</legend>
+                        <div class="col-md-10">
+                            @foreach ($dataLocation as $location)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="outpost_location" id="{{ $location->id }}" value="{{ $location->id }}" required>
+                                    <label class="form-check-label ms-2" for="{{ $location->id }}">
+                                        {{ $location->name }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </fieldset>
                 </div>

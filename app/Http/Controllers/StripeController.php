@@ -48,16 +48,13 @@ class StripeController extends Controller
 
             ],
             'mode'        => 'payment',
-            'success_url' => route('success'),
+            'success_url' => route('success') . "?session_id={CHECKOUT_SESSION_ID}",
             'cancel_url'  => route('checkout'),
         ]);
 
+
+
         // dd($session->url);
         return redirect()->away($session->url);
-    }
-
-    public function success()
-    {
-        return "Thanks for you order You have just completed your payment. The seeler will reach out to you as soon as possible";
     }
 }

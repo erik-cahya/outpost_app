@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\LocationModel;
 use App\Models\ServiceModel;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class ServiceController extends Controller
 
     public function create()
     {
-        return view('admin.service.create');
+        $data['dataLocation'] = LocationModel::get();
+        return view('admin.service.create', $data);
     }
 
     public function store(Request $request)
@@ -44,6 +46,7 @@ class ServiceController extends Controller
             'id' => mt_rand(100000000000000, 999999999999999),
             'name' => $request->name,
             'service_category' => $request->service_category,
+            'outpost_location_id' => $request->outpost_location,
             'flexible_payment' => $request->flexible_payment,
             'idr_price' => $formatIdrPrice,
             'usd_price' => $request->usd_price,
@@ -87,6 +90,7 @@ class ServiceController extends Controller
         ServiceModel::where('id', $id)->update([
             'name' => $request->name,
             'service_category' => $request->service_category,
+            'outpost_location_id' => $request->outpost_location,
             'flexible_payment' => $request->flexible_payment,
             'idr_price' => ($request->flexible_payment == 'Yes' ? null : $formatIdrPrice),
             'usd_price' => ($request->flexible_payment == 'Yes' ? null : $request->usd_price),

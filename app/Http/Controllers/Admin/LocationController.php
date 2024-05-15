@@ -22,7 +22,7 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:location',
+            'name' => 'required|unique:outpost_location',
         ], [
             'name.required' => 'Kolom ini harus diisi.',
             'name.unique' => 'Location data already exists.',
@@ -47,7 +47,7 @@ class LocationController extends Controller
         $nameCountry = LocationModel::where('id', $id)->first('name');
         if ($request->name !== $nameCountry->name) {
             $validated = $request->validate([
-                'name' => 'required|unique:location',
+                'name' => 'required|unique:outpost_location',
             ], [
                 'name.required' => 'Kolom ini harus diisi.',
                 'name.unique' => 'Location data already exists.',

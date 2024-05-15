@@ -32,6 +32,8 @@ Route::get('/', function () {
 Route::get('/payment/{type}', [PaymentController::class, 'index']);
 Route::get('/payment', [PaymentController::class, 'index'])->name('get.payment');
 Route::post('/payment', [PaymentController::class, 'payment'])->name('post.payment');
+Route::get('/success', [PaymentController::class, 'success'])->name('success');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -41,18 +43,20 @@ Route::middleware('auth')->group(function () {
 
     // ## Country Management routes
     Route::resource('/admin/country', CountryController::class);
+
     // ## Location Management routes
     Route::resource('/admin/location', LocationController::class);
+
     // ## Location Management routes
     Route::resource('/admin/service', ServiceController::class);
 });
 
-Route::get('getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');
+Route::get('/payment/getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');
+Route::get('/payment/getDataLocation/{id}', [PaymentController::class, 'getDataLocation'])->name('getDataLocation');
 
 // Stripe Test
 Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
 Route::post('/session', [StripeController::class, 'session'])->name('session');
-Route::get('/success', [StripeController::class, 'success'])->name('success');
 
 // Route::get('/checkout', 'App\Http\Controllers\StripeController@checkout')->name('checkout');
 // Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');

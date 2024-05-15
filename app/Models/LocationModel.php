@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LocationModel extends Model
 {
-    protected $table = 'location';
+    protected $table = 'outpost_location';
     protected $guarded = [];
     protected $primaryKey = 'id';
     use HasFactory;
