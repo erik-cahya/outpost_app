@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
-    public function index($type = null)
+    public function index(Request $request, $type = null)
     {
 
+        // dd($url = $request->segment(2));
         if ($type !== null) {
             $dataService = ServiceModel::where('service_category', $type)->first();
             if (isset($dataService->service_category)) {
@@ -107,11 +108,11 @@ class PaymentController extends Controller
         return response()->json($empData);
     }
 
-    public function getDataLocation($id)
+    public function getDataLocation($id, $category)
     {
         $locationData['data'] = DB::table('service')
             ->select('name')
-            ->where('outpost_location_id', $id)
+            ->where('outpost_location_id', $id)->where('service_category', $category)
             ->get();
 
         return response()->json($locationData);

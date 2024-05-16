@@ -51,8 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/service', ServiceController::class);
 });
 
-Route::get('/payment/getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');
-Route::get('/payment/getDataLocation/{id}', [PaymentController::class, 'getDataLocation'])->name('getDataLocation');
+Route::get('/getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');
+Route::get('/payment/getDataLocation/{id}/{category}', [PaymentController::class, 'getDataLocation'])->name('getDataLocation');
 
 // Stripe Test
 Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');

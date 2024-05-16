@@ -34,9 +34,9 @@
                         @foreach ($dataService as $service)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{!! $service->name !!}</td>
+                            <td>{{ $service->name }}</td>
                             <td>{{ $service->service_category }}</td>
-                            <td>{{ $service->outpost_location }}</td>
+                            <td>{{ $service->outpost_location_name }}</td>
                             <td>{{ $service->flexible_payment }}</td>
                             <td>{{ $service->idr_price == null ? '-' : 'Rp. ' . number_format($service->idr_price, 0, ',', '.') }}</td>
                             <td>{{ $service->usd_price == null ? '-' : 'USD $'. $service->usd_price }}</td>

@@ -11,7 +11,9 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $dataService = ServiceModel::get();
+        $dataService = ServiceModel::join('outpost_location', 'outpost_location.id', '=', 'service.outpost_location_id')
+            ->select('service.*', 'outpost_location.name as outpost_location_name')
+            ->get();
         return view('admin.service.index', compact('dataService'));
     }
 

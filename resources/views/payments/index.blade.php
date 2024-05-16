@@ -238,19 +238,27 @@
 
     <script type='text/javascript'>
         $(document).ready(function() {
+            // Memuat data ketika halaman dimuat
             loadDataCurrency();
 
+            // Fungsi untuk memuat data berdasarkan nilai yang ada di #data_service
             function loadDataCurrency() {
-                console.log('LoadDataCurrencies');
                 var currency_type = $("#currency_select").val();
                 var services_name = $("#data_service").val();
 
+                // Memuat data jika #data_service memiliki nilai
+                if (services_name) {
+                    loadServiceData(services_name, currency_type);
+                }
+            }
+
+            // Fungsi untuk memuat data berdasarkan nama layanan dan tipe mata uang
+            function loadServiceData(services_name, currency_type) {
                 $.ajax({
-                    url: 'payment/getDataPrice/' + services_name,
+                    url: '../getDataPrice/' + services_name,
                     type: 'get',
                     dataType: 'json',
                     success: function(response) {
-
                         if (currency_type == 'USD') {
                             $("#amount").val(response['data'][0].usd_price);
                         } else {
@@ -263,30 +271,16 @@
                         }
                     }
                 });
+            }
 
-                $('#data_service').click(function() {
-                    services_name = $(this).val();
-                    $.ajax({
-                        url: 'payment/getDataPrice/' + services_name,
-                        type: 'get',
-                        dataType: 'json',
-                        success: function(response) {
-                            if (currency_type == 'USD') {
-                                $("#amount").val(response['data'][0].usd_price);
-                            } else {
-                                $("#amount").val(response['data'][0].idr_price);
-                            }
+            // Event handler untuk #data_service ketika nilainya berubah
+            $('#data_service').on('click change', function() {
+                var services_name = $(this).val();
+                var currency_type = $("#currency_select").val();
+                console.log('Nama Service : ' + services_name);
+                loadServiceData(services_name, currency_type);
+            });
 
-                            console.log(response['data']);
-                            if (response['data'][0].idr_price !== null) {
-                                $("#amount").prop('readonly', true);
-                            } else {
-                                $("#amount").prop('readonly', false);
-                            }
-                        }
-                    });
-                });
-            };
             // Bind event change untuk #currency_select
             $('#currency_select').change(function(){
                 loadDataCurrency();
@@ -295,7 +289,8 @@
     </script>
 
 
-    <script type='text/javascript'>
+
+    {{-- <script type='text/javascript'>
         $('#outpost_location').change(function() {
             var outpost_location = $("#outpost_location").val();
             $.ajax({
@@ -328,6 +323,55 @@
                 }
             });
         });
+    </script> --}}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Mendapatkan bagian kategori dari URL
+            var category = window.location.pathname.split('/').pop();
+
+            // Fungsi untuk melakukan permintaan AJAX dan mengisi elemen select
+            function fetchDataLocation(outpost_location) {
+                $.ajax({
+                    url: '/payment/getDataLocation/' + outpost_location + '/' + category,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        // Kosongkan elemen select sebelum menambahkan opsi baru
+                        const selectElement = document.getElementById('data_service');
+                        const amountForm = document.getElementById('amount');
+
+                        selectElement.innerHTML = ''; // Mengosongkan semua opsi yang ada
+                        amountForm.value = ''; // Mengosongkan semua opsi yang ada
+
+                        // Iterasi melalui data dan tambahkan opsi baru
+                        response['data'].forEach(item => {
+                            // Buat opsi baru untuk item saat ini
+                            const option = document.createElement('option');
+                            option.value = item.name;
+                            option.textContent = item.name;
+
+                            // Tambahkan opsi baru untuk item saat ini ke dalam elemen select
+                            selectElement.appendChild(option);
+                        });
+
+                        // Jika Anda ingin mengatur nilai default untuk elemen select
+                        if (response['data'].length > 0) {
+                            selectElement.value = response['data'][0].name;
+                        }
+                    }
+                });
+            }
+
+            // Jalankan fetchDataLocation() ketika outpost_location berubah
+            $('#outpost_location').change(function() {
+                var outpost_location = $(this).val();
+                fetchDataLocation(outpost_location);
+            });
+
+            // Selanjutnya, Anda bisa melakukan permintaan AJAX jika diperlukan dengan kategori yang diperoleh.
+        });
     </script>
+
 </body>
 </html>
