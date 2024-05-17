@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
-    public function index(Request $request, $type = null)
+    public function index()
     {
+        return view('payments.index');
+    }
 
-        // dd($url = $request->segment(2));
+    public function indexCategory($type = null)
+    {
         if ($type !== null) {
             $dataService = ServiceModel::where('service_category', $type)->first();
             if (isset($dataService->service_category)) {
@@ -27,7 +30,7 @@ class PaymentController extends Controller
         $dataLocation = LocationModel::get();
         $dataCountry = CountryModel::get();
 
-        return view('payments.index', compact('dataService', 'dataLocation', 'dataCountry'));
+        return view('payments.index-category', compact('dataService', 'dataLocation', 'dataCountry'));
     }
 
     public function payment(Request $request)
@@ -63,7 +66,6 @@ class PaymentController extends Controller
                 ],
             ],
             'customer_email' =>  $request->email,
-
             'mode'        => 'payment',
 
             // 'ui_mode' => 'embedded',

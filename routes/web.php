@@ -29,8 +29,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/payment/{type}', [PaymentController::class, 'index']);
 Route::get('/payment', [PaymentController::class, 'index'])->name('get.payment');
+Route::get('/payment/{type}', [PaymentController::class, 'indexCategory']);
 Route::post('/payment', [PaymentController::class, 'payment'])->name('post.payment');
 Route::get('/success', [PaymentController::class, 'success'])->name('success');
 
