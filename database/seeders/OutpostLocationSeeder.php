@@ -15,11 +15,11 @@ class OutpostLocationSeeder extends Seeder
     {
         $location = [
             [
-                'id' => 1,
+                'id' => mt_rand(100000000000000, 999999999999999),
                 'name' => 'Outpost Ubud'
             ],
             [
-                'id' => 2,
+                'id' => mt_rand(100000000000000, 999999999999999),
                 'name' => 'Outpost Penestanan'
             ]
         ];

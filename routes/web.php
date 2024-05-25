@@ -28,6 +28,10 @@ Route::get('/', function () {
     // return view('welcome');
 });
 
+Route::get('/pay-success', function () {
+    return view('payments.payment-success');
+});
+
 
 Route::get('/payment', [PaymentController::class, 'index'])->name('get.payment');
 Route::get('/payment/{type}', [PaymentController::class, 'indexCategory']);

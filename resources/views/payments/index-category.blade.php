@@ -57,13 +57,9 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="first_name" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="last_name" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name">
+                        <div class="mb-3 col-md-12">
+                            <label for="first_name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="first_name" name="customer_name" aria-describedby="emailHelp" required>
                         </div>
                     </div>
 
@@ -84,7 +80,7 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
-                                <input type="text" class="form-control" id="phone" name="phone_number">
+                                <input type="tel" class="form-control" id="phone" name="phone_number" required>
 
                             </div>
 
@@ -99,7 +95,7 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-globe-asia"></i>
                                 </div>
-                                <select class="form-select" id="country" name="country">
+                                <select class="form-select" id="country" name="country" required>
                                     <option selected readonly disabled>Choose...</option>
                                     @foreach ($dataCountry as $country)
                                         <option value="{{ $country->name }}">{{ $country->name }}</option>
@@ -118,7 +114,7 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-flag"></i>
                                 </div>
-                                <select class="form-select" id="outpost_location" name="location">
+                                <select class="form-select" id="outpost_location" name="location" required>
                                     <option selected readonly disabled>Choose...</option>
                                     @foreach ($dataLocation as $location)
                                         <option value="{{ $location->id }}">{{ $location->name }}</option>
