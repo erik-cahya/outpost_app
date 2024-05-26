@@ -59,9 +59,6 @@ Route::get('/getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->na
 Route::get('/payment/getDataLocation/{id}/{category}', [PaymentController::class, 'getDataLocation'])->name('getDataLocation');
 
 // Stripe Test
-Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
-Route::post('/session', [StripeController::class, 'session'])->name('session');
-
 // Route::get('/checkout', 'App\Http\Controllers\StripeController@checkout')->name('checkout');
 // Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
 // Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');
