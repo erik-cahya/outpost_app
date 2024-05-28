@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
 
     // ## Location Management routes
     Route::resource('/admin/service', ServiceController::class);
+
+    Route::resource('/admin/payment', AdminPaymentController::class);
 });
 
 Route::get('/getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');

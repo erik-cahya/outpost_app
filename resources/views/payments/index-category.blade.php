@@ -30,9 +30,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-auto"> <!-- Menggunakan kelas ms-auto untuk menempatkan menu ke kanan -->
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/payment">Home</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('dashboard') }}">Admin Panel</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -45,7 +45,7 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

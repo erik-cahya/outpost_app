@@ -74,5 +74,15 @@
                 </li>
             </ul>
         </li>
+
+        <li class="nav-group-title">Payment</li>
+
+        <li class="nav-menu-item {{ request()->segment(2) == 'payment' ? 'router-link-active' : '' }}">
+            <a href="/admin/payment">
+                <i class="icon-grid feather"></i>
+                <span class="nav-menu-item-title">Payment</span>
+            </a>
+        </li>
+
     </ul>
 </div>
