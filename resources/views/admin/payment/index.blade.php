@@ -23,9 +23,10 @@
                             <th>Stripe ID</th>
                             <th>Status</th>
                             <th>Customer Name</th>
+                            <th>Cardholder Name</th>
                             <th>Customer Email</th>
                             <th>Currency</th>
-                            <th>Package Order</th>
+                            {{-- <th>Package Order</th> --}}
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -42,10 +43,11 @@
                                 <span class="badge {{ $dataPayment->status == 'complete' ? 'bg-success' : 'bg-danger' }}">{{ $dataPayment->status }}</span>
                             </td>
                             <td>{{ $dataPayment->customer_name }}</td>
+                            <td>{{ $dataPayment->payment_name }}</td>
 
                             <td>{{ $dataPayment->customer_email }}</td>
-                            <td>{{ $dataPayment->currency }}</td>
-                            <td>{{ $dataPayment->package_name }}</td>
+                            <td>{{ ($dataPayment->currency == 'idr' ? 'IDR ' : 'USD ') }}{{ $dataPayment->amount_paid }}</td>
+                            {{-- <td>{{ $dataPayment->package_name }}</td> --}}
                         </tr>
                         @endforeach
                     </tbody>
