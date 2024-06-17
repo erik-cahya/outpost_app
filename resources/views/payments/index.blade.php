@@ -180,7 +180,7 @@
 </head>
 <body>
   <div class="text-light text-center p-4">
-      <h2 class="page__title">Outpost Payment</h2>
+      <h2 class="page__title">Outpost Payment Test</h2>
   </div>
 
   <ul class="accordion">
