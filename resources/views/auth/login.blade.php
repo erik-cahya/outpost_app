@@ -52,8 +52,6 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100">Log In</button>
                                 </form>
-
-
                                 {{-- <div class="text-center mt-4">
                                     <p class="text-muted">Don't have an account yet? <a href="{{ route('register') }}">Register</a></p>
                                 </div> --}}

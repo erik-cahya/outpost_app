@@ -26,6 +26,7 @@
                             <th>Cardholder Name</th>
                             <th>Customer Email</th>
                             <th>Currency</th>
+                            <th>Action</th>
                             {{-- <th>Package Order</th> --}}
                         </tr>
                     </thead>
@@ -48,6 +49,13 @@
                             <td>{{ $dataPayment->customer_email }}</td>
                             <td>{{ ($dataPayment->currency == 'idr' ? 'IDR ' : 'USD ') }}{{ $dataPayment->amount_paid }}</td>
                             {{-- <td>{{ $dataPayment->package_name }}</td> --}}
+                            <td>
+                                <form action="/admin/payment/{{ $dataPayment->id }}" method="POST" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('Are you sure ?')" class="btn btn-warning btn-sm">Delete Data</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

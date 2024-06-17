@@ -26,7 +26,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: url('https://www.transparenttextures.com/patterns/escheresque.png') repeat black;
+        background: var(--bg);
         font-family: "Nunito Sans", sans-serif;
     }
 
@@ -50,6 +50,7 @@
     @media only screen and (max-width: 991px) {
         .accordion {
             display: flex;
+            /* width: 80px; */
             height: 50%;
             margin: 0;
             padding: 0;
@@ -85,6 +86,9 @@
             padding: 0;
         }
     }
+
+
+
 
     .accordion__image {
         width: 100%;
@@ -148,6 +152,8 @@
         transition: opacity 0.4s ease-out;
     }
 
+
+
     .accordion__item:hover {
         flex-grow: 2;
     }
@@ -168,6 +174,8 @@
     .accordion__item:hover .accordion__image {
         transform: scale(1.1);
     }
+
+
   </style>
 </head>
 <body>

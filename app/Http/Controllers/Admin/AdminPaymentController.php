@@ -13,4 +13,11 @@ class AdminPaymentController extends Controller
         $data['payment'] = PaymentModel::get();
         return view('admin.payment.index', $data);
     }
+
+    public function destroy($id)
+    {
+
+        PaymentModel::destroy($id);
+        return redirect('/admin/payment');
+    }
 }
