@@ -114,12 +114,12 @@
     }
 
     .accordion__image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: transform 0.3s ease;
-    }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.3s ease;
+}
 
     .accordion__title {
         display: flex;
@@ -194,11 +194,11 @@
   <ul class="accordion">
 
     <li class="accordion__item">
-      <img class="accordion__image" src="{{ asset('img/co_working_2.jpeg') }}"/>
+      <img class="accordion__image" src="{{ asset('img/co_working_2_edit.jpeg') }}"/>
       <div class="accordion__overlay"></div>
       <h2 class="accordion__title">Co-Working</h2>
       <p class="accordion__description">
-          <a href="/payment/co-working" class="btn btn-sm btn-success">Get Payment</a>
+          <a href="/payment/co-working" class="btn btn-lg btn-success">Get Payment</a>
       </p>
     </li>
 
@@ -207,7 +207,7 @@
       <div class="accordion__overlay"></div>
       <h2 class="accordion__title">Co-Living</h2>
       <p class="accordion__description">
-          <a href="/payment/co-living" class="btn btn-sm btn-success">Get Payment</a>
+          <a href="/payment/co-living" class="btn btn-lg btn-success">Get Payment</a>
       </p>
     </li>
 
