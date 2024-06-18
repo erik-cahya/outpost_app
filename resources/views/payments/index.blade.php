@@ -26,7 +26,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: url('https://www.transparenttextures.com/patterns/escheresque.png') repeat black;
+        background: url('https://www.transparenttextures.com/patterns/escheresque.png') repeat #e4ded0;
         font-family: "Nunito Sans", sans-serif;
     }
 
@@ -48,9 +48,23 @@
     }
 
     @media only screen and (max-width: 991px) {
+
+        .page__title {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            bottom: 0.5em;
+            color: var(--white);
+            font-size: clamp(1em, 6vw - 0.5em, 3em);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: black !important;
+        }
+
         .accordion {
             display: flex;
-            height: 50%;
+            height: 70%;
             margin: 0;
             padding: 0;
             flex-direction: column-reverse;
@@ -58,7 +72,7 @@
         .accordion__item {
             position: relative;
             flex-grow: 1;
-            width: 600px;
+            width: 900px;
             height: 100%;
             background: var(--bg);
             transition: flex-grow 300ms ease;
@@ -67,6 +81,19 @@
     }
 
     @media only screen and (min-width: 992px) {
+        .page__title {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            bottom: 0.5em;
+            color: var(--white);
+            font-size: clamp(1em, 3vw - 0.5em, 3em);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: black !important;
+        }
+
         .accordion__item {
             position: relative;
             flex-grow: 1;
@@ -109,17 +136,6 @@
         text-transform: uppercase;
     }
 
-    .page__title {
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap;
-        white-space: nowrap;
-        bottom: 0.5em;
-        color: var(--white);
-        font-size: clamp(1em, 3vw - 0.5em, 3em);
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-    }
 
     .accordion__title::after {
         content: "+";
@@ -178,7 +194,7 @@
   <ul class="accordion">
 
     <li class="accordion__item">
-      <img class="accordion__image" src="{{ asset('img/co_working.jpeg') }}"/>
+      <img class="accordion__image" src="{{ asset('img/co_working_2.jpeg') }}"/>
       <div class="accordion__overlay"></div>
       <h2 class="accordion__title">Co-Working</h2>
       <p class="accordion__description">
@@ -187,7 +203,7 @@
     </li>
 
     <li class="accordion__item">
-      <img class="accordion__image" src="{{ asset('img/co_living.jpeg') }}"/>
+      <img class="accordion__image" src="{{ asset('img/co_living_2.jpeg') }}"/>
       <div class="accordion__overlay"></div>
       <h2 class="accordion__title">Co-Living</h2>
       <p class="accordion__description">
