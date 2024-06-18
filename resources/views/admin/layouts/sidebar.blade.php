@@ -72,6 +72,24 @@
             </ul>
         </li>
 
+        <li class="nav-submenu {{ request()->segment(2) == 'user' ? 'open' : '' }}">
+            <a class="nav-submenu-title">
+                <i class="la-user la"></i>
+                <span>User Management</span>
+                <i class="nav-submenu-arrow"></i>
+            </a>
+            <ul class="nav-menu menu-collapse" style="{{ request()->segment(2) == 'user' ? 'display:block;' : '' }}">
+
+                <li class="nav-menu-item {{ request()->segment(2) == 'user' && request()->segment(3) == null ? 'router-link-active' : '' }}">
+                    <a href="/admin/user">List Users</a>
+                </li>
+
+                <li class="nav-menu-item {{ request()->segment(2) == 'user' && request()->segment(3) == 'create' ? 'router-link-active' : '' }}">
+                    <a href="/admin/user/create">Add New User</a>
+                </li>
+            </ul>
+        </li>
+
         <li class="nav-group-title">Payment</li>
 
         <li class="nav-menu-item {{ request()->segment(2) == 'payment' ? 'router-link-active' : '' }}">

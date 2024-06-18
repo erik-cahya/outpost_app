@@ -1,34 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
+
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
-class RegisteredUserController extends Controller
+class UserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
+    //
+
+    public function index()
     {
-        return view('auth.register');
+        $data['dataUser'] = User::get();
+        return view('admin.user.index', $data);
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
+    public function create()
+    {
+        return view('admin.user.create');
+    }
+
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -42,10 +43,21 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        return redirect('admin/user');
 
-        Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+
+
+        // event(new Registered($user));
+
+        // Auth::login($user);
+
+        // return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+        return redirect('/admin/user');
     }
 }

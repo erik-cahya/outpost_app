@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -51,10 +52,14 @@ Route::middleware('auth')->group(function () {
     // ## Location Management routes
     Route::resource('/admin/location', LocationController::class);
 
-    // ## Location Management routes
+    // ## Service Management routes
     Route::resource('/admin/service', ServiceController::class);
 
+    // ## Payment Management routes
     Route::resource('/admin/payment', AdminPaymentController::class);
+
+    // ## User Management routes
+    Route::resource('/admin/user', UserController::class);
 });
 
 Route::get('/getDataPrice/{id}', [PaymentController::class, 'getDataPrice'])->name('getDataPrice');
