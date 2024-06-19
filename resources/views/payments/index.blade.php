@@ -129,7 +129,7 @@
         position: absolute;
         bottom: 0.5em;
         right: 0.5em;
-        writing-mode: vertical-rl;
+
         color: var(--white);
         font-size: clamp(1em, 3vw - 0.5em, 3em);
         letter-spacing: 0.2em;
@@ -137,10 +137,11 @@
     }
 
 
-    .accordion__title::after {
+
+    /* .accordion__title::after {
         content: "+";
         margin-top: 0.3em;
-    }
+    } */
 
     .accordion__description {
         position: absolute;
