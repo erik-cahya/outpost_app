@@ -66,7 +66,7 @@
                                 <div class="input-group-text">
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
-                                <input type="tel" class="form-control" id="phone" name="phone_number" required>
+                                <input type="number" class="form-control" id="phone" name="phone_number" required>
 
                             </div>
 

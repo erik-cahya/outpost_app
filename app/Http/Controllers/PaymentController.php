@@ -71,9 +71,9 @@ class PaymentController extends Controller
             ],
             'customer_email' =>  $request->email,
             'mode'        => 'payment',
-
-            // 'ui_mode' => 'embedded',
-            // 'return_url' => route('success'),
+            'payment_intent_data' => [
+                'description' => $nameService,
+            ],
 
             'success_url' => route('success') . "?session_id={CHECKOUT_SESSION_ID}",
             // 'cancel_url' => route('success') . "?session_id={CHECKOUT_SESSION_ID}",
@@ -118,20 +118,8 @@ class PaymentController extends Controller
         ]);
 
         $data['data_payment'] = PaymentModel::where('session_id', $request->session_id)->first();
+        // dd($data['data_payment']);
         return view('payments.payment-success', $data);
-        dd($sessionId->customer_details->name);
-        $customer = $stripe->customers->retrieve($sessionId->customer);
-
-
-
-
-        echo "<h1>Thanks for your order, $customer->name!</h1>";
-
-        // $session = \Stripe\Checkout\Session::retrieve($sessionId);
-        // $customer = \Stripe\Customer::retrieve($session->customer);
-
-        // dd($customer->name);
-        // return "Thanks for you order You have just completed your payment. The seeler will reach out to you as soon as possible";
     }
 
     public function getDataPrice($id)
