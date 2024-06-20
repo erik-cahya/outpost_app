@@ -39,6 +39,9 @@ class PaymentController extends Controller
     public function payment(Request $request)
     {
         // dd($request->all());
+
+        $location_outpost = LocationModel::where('id', $request->location)->first();
+
         if ($request->currency == 'USD') {
             $explode = explode('.', $request->amount);
             if (!isset($explode[1])) {
@@ -53,6 +56,7 @@ class PaymentController extends Controller
         $nameService = $categoryService . ' Package - ' . $request->services;
         $customerName = $request->customer_name;
 
+        // dd($location_outpost->name . ' | ' . $nameService);
 
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
 
@@ -72,7 +76,7 @@ class PaymentController extends Controller
             'customer_email' =>  $request->email,
             'mode'        => 'payment',
             'payment_intent_data' => [
-                'description' => $nameService,
+                'description' => $location_outpost->name . ' | ' . $nameService,
             ],
 
             'success_url' => route('success') . "?session_id={CHECKOUT_SESSION_ID}",
