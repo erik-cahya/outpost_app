@@ -51,7 +51,7 @@
                 @csrf
                 <div class="col-md-10">
                     <div class="row mb-3">
-                        <label for="country_name" class="col-sm-2 col-form-label">Country Name</label>
+                        <label for="country_name" class="col-sm-2 col-form-label">Service Name</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="country_name" name="name" value="{{ old('name', $dataService->name) }}" placeholder="Input Name of Country">
 
