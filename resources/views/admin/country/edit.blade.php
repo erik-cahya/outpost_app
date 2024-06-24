@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">Add Country</button>
+                    <button type="submit" class="btn btn-primary">Save Country</button>
                 </div>
             </form>
         </div>

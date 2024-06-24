@@ -19,7 +19,7 @@
             <form class="row g-3 mt-4" action="/admin/location" method="POST">
                 @csrf
                 <div class="col-md-6">
-                    <label for="country_name" class="form-label">Country Name</label>
+                    <label for="country_name" class="form-label">Location Name</label>
                     <input type="text" class="form-control" id="country_name" name="name" value="{{ old('name') }}" placeholder="Input Name of Location">
 
                     @error('name')
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">Add Country</button>
+                    <button type="submit" class="btn btn-primary">Add Location</button>
                 </div>
             </form>
         </div>
