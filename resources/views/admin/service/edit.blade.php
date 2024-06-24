@@ -83,6 +83,23 @@
                     </fieldset>
                 </div>
 
+                {{-- Outpost Location --}}
+                <div class="col-md-10">
+                    <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-2 pt-0">Outpost Location</legend>
+                        <div class="col-md-10">
+                            @foreach ($dataLocation as $location)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="outpost_location" id="{{ $location->id }}" value="{{ $location->id }}" {{ $dataService->outpost_location_id == $location->id ? 'checked' : '' }} required>
+                                    <label class="form-check-label ms-2" for="{{ $location->id }}">
+                                        {{ $location->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </fieldset>
+                </div>
+
                 <div class="col-md-10">
                     <fieldset class="row mb-2">
                         <legend class="col-form-label col-sm-2 pt-0">Flexible Payment</legend>
@@ -118,7 +135,9 @@
                     <label for="usd_price" class="form-label">USD Price</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">USD</span>
-                        <input type="number" class="form-control" id="usd_price" name="usd_price" placeholder="Example input placeholder" value="{{ $dataService->usd_price }}">
+
+                        <input type="text" class="form-control" name="usd_price" id="usd_price" onkeypress="return hanyaAngka(event)" value="{{ $dataService->usd_price }}">
+
                     </div>
 
                     @error('usd_price')
@@ -192,6 +211,25 @@
         // Call the updateRupiah function with the input element as argument
         updateRupiah({ target: inputIdrPrice });
     };
+</script>
+
+<script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var value = document.getElementById("usd_price").value;
+
+        // Hanya izinkan digit angka, titik (sebagai koma), dan tombol panah navigasi
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        // Pastikan hanya ada satu titik dalam input
+        if (charCode == 46 && value.indexOf('.') !== -1) {
+            return false;
+        }
+
+        return true;
+    }
 </script>
 @endsection
 

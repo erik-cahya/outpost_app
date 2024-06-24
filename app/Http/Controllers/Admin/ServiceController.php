@@ -32,9 +32,8 @@ class ServiceController extends Controller
             ]);
         }
         $validated = $request->validate([
-            'name' => 'required|unique:service',
+            'name' => 'required',
         ], [
-            'name.required' => 'Kolom ini harus diisi.',
             'name.unique' => 'Service data already exists.',
         ]);
 
@@ -60,13 +59,15 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $dataService = ServiceModel::where('id', $id)->first();
+        // dd($dataService);
+        $dataLocation = LocationModel::get();
 
-        return view('admin.service.edit', compact('dataService'));
+
+        return view('admin.service.edit', compact('dataService', 'dataLocation'));
     }
 
     public function update(Request $request, $id)
     {
-
         if ($request->flexible_payment == 'No') {
             $validated = $request->validate([
                 'idr_price' => 'required',
