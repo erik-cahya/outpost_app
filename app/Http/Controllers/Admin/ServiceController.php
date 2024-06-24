@@ -77,10 +77,9 @@ class ServiceController extends Controller
         $nameService = ServiceModel::where('id', $id)->first('name');
         if ($request->name !== $nameService->name) {
             $validated = $request->validate([
-                'name' => 'required|unique:location',
+                'name' => 'required',
             ], [
                 'name.required' => 'Kolom ini harus diisi.',
-                'name.unique' => 'Service data already exists.',
             ]);
         }
 
