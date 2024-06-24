@@ -140,6 +140,7 @@
 
                     </div>
 
+
                     @error('usd_price')
                         <div id="inputDigit-error" class="is-invalid" style="color: #f46363">{{ $message }}</div>
                     @enderror
@@ -147,7 +148,7 @@
 
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">Add Country</button>
+                    <button type="submit" class="btn btn-primary">Save Data</button>
                 </div>
             </form>
         </div>
