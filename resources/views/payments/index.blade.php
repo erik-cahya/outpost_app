@@ -177,14 +177,14 @@
         content: none;
     }
 
-    .accordion__item:hover .accordion__description {
+    /* .accordion__item:hover .accordion__description {
         transform: translateY(0);
         opacity: 1;
     }
 
     .accordion__item:hover .accordion__image {
         transform: scale(1.1);
-    }
+    } */
   </style>
 </head>
 <body>
@@ -194,23 +194,27 @@
 
   <ul class="accordion">
 
-    <li class="accordion__item">
-      <img class="accordion__image" src="{{ asset('img/co_working_2_edit.jpeg') }}"/>
-      <div class="accordion__overlay"></div>
-      <h2 class="accordion__title">Co-Working</h2>
-      <p class="accordion__description">
-          <a href="/payment/co-working" class="btn btn-lg btn-success">Get Payment</a>
-      </p>
-    </li>
+    <a href="/payment/co-working">
+        <li class="accordion__item">
+            <img class="accordion__image" src="{{ asset('img/co_working_2_edit.jpeg') }}"/>
+            <div class="accordion__overlay"></div>
+            <h2 class="accordion__title">Co-Working</h2>
+            <p class="accordion__description">
+                <a href="/payment/co-working" class="btn btn-lg btn-success"></a>
+            </p>
+        </li>
+    </a>
 
-    <li class="accordion__item">
-      <img class="accordion__image" src="{{ asset('img/co_living_2.jpeg') }}"/>
-      <div class="accordion__overlay"></div>
-      <h2 class="accordion__title">Co-Living</h2>
-      <p class="accordion__description">
-          <a href="/payment/co-living" class="btn btn-lg btn-success">Get Payment</a>
-      </p>
-    </li>
+    <a href="/payment/co-living">
+        <li class="accordion__item">
+            <img class="accordion__image" src="{{ asset('img/co_living_2.jpeg') }}"/>
+            <div class="accordion__overlay"></div>
+            <h2 class="accordion__title">Co-Living</h2>
+            <p class="accordion__description">
+                <a href="/payment/co-living" class="btn btn-lg btn-success"></a>
+            </p>
+        </li>
+    </a>
 
   </ul>
 </body>
